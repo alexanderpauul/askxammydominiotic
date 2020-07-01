@@ -15,8 +15,6 @@ namespace Dominiotic.Services
                                  Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
                                  string includeProperties = "");
         TEntity GetByID(object id);
-        // IEnumerable<TEntity> GetWithRawSql(string query, 
-        // params object[] parameters);
 
         void Insert(TEntity entity);
 
