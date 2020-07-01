@@ -8,39 +8,39 @@ namespace Dominiotic.Controllers
 {
     [Route("api/v1/Dominiotic/[controller]")]
     [ApiController]
-    public class PlatesController : ControllerBase
+    public class IngredientsController : ControllerBase
     {
         private DominioticContext dbContext = new DominioticContext();
         private UnitOfWork unitOfWork = new UnitOfWork(new DominioticContext());
 
 
         [HttpPost]
-        public IActionResult Create([FromBody] Plates plates)
+        public IActionResult Create([FromBody] Ingredients ingredients)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    unitOfWork.Plates.Insert(plates);
+                    unitOfWork.Ingredients.Insert(ingredients);
                     unitOfWork.Save();
-                    return Created("UnicornDemo/Create", plates);
+                    return Created("UnicornDemo/Create", ingredients);
                 }
             }
             catch (DataException ex)
             {
                 return BadRequest(ex);
             }
-            return BadRequest(plates);
+            return BadRequest(ingredients);
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] Plates plates)
+        public IActionResult Update([FromBody] Ingredients ingredients)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    unitOfWork.Plates.Update(plates);
+                    unitOfWork.Ingredients.Update(ingredients);
                     unitOfWork.Save();
                     return Ok();
                 }
@@ -60,9 +60,9 @@ namespace Dominiotic.Controllers
         {
             try
             {
-                var plates = unitOfWork.Plates.Get();
-                if (plates != null)
-                    return Ok(plates);
+                var ingredients = unitOfWork.Ingredients.Get();
+                if (ingredients != null)
+                    return Ok(ingredients);
                 else
                     return Ok();
             }
@@ -75,9 +75,9 @@ namespace Dominiotic.Controllers
         [HttpGet("{id}")]
         public IActionResult GetDetails(int Id)
         {
-            Plates plates = unitOfWork.Plates.GetByID(Id);
-            if (plates != null)
-                return Ok(plates);
+            Ingredients ingredients = unitOfWork.Ingredients.GetByID(Id);
+            if (ingredients != null)
+                return Ok(ingredients);
             else
             {
                 return NoContent();
@@ -89,7 +89,7 @@ namespace Dominiotic.Controllers
         {
             if (Id != 0)
             {
-                unitOfWork.Plates.Delete(Id);
+                unitOfWork.Ingredients.Delete(Id);
                 unitOfWork.Save();
                 return Ok("Ingredients deleted");
             }
