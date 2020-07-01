@@ -10,8 +10,7 @@ namespace Dominiotic.Entities.Models
         {
         }
 
-        public DominioticContext(DbContextOptions<DominioticContext> options)
-            : base(options)
+        public DominioticContext(DbContextOptions<DominioticContext> options) : base(options)
         {
         }
 
